@@ -1,0 +1,21 @@
+.card {
+  max-width: 300px;
+  margin: 20px auto;
+  background-color: #f8f9fa;
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px;
+}
+
+.card-header {
+  background-color: var(--theme);
+  color: white;
+  padding: 10px;
+}
+
+.card-body {
+  background-color: #ffffff;
+}

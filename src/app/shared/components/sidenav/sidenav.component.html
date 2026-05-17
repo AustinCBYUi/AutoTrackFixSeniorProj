@@ -1,0 +1,50 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-nav-list class="square-list">
+      <!-- Dashboard -->
+      <a mat-list-item routerLink="/">
+        <span class="bi bi-house-fill"></span> Dashboard
+      </a>
+      <!-- Clients -->
+      <a mat-list-item routerLink="/clients">
+        <span class="bi bi-file-person-fill"></span> Clients
+      </a>
+      <!-- Reports / Analytics -->
+      <a mat-list-item routerLink="/">
+        <span class="bi bi-bar-chart-fill"></span> Reports / Analytics
+      </a>
+      <!-- Projects / Tasks -->
+      <a mat-list-item routerLink="/">
+        <span class="bi bi-calendar-check-fill"></span> Calendar
+      </a>
+      <!-- User Manager -->
+<!--      <a mat-list-item routerLink="/">-->
+<!--        <span class="bi bi-people-fill"></span> User Management-->
+<!--      </a>-->
+      <!-- Files -->
+<!--      <a mat-list-item routerLink="/">-->
+<!--        <span class="bi bi-folder-fill"></span> Files-->
+<!--      </a>-->
+      <!-- Messages -->
+<!--      <a mat-list-item routerLink="/">-->
+<!--        <span class="bi bi-chat-left-dots-fill"></span> Messages-->
+<!--      </a>-->
+      <!-- Billing (and invoices) -->
+
+      <!-- Audit? -->
+      <!-- Settings (Should always be last) -->
+      <a mat-list-item routerLink="/">
+        <span class="bi bi-gear-wide-connected"></span> Settings
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

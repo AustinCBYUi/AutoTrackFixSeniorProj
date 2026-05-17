@@ -1,0 +1,12 @@
+<div class="register-container">
+  <h2>Register</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <input type="email" class="form-control" formControlName="email" placeholder="Email" required />
+    <input type="password" class="form-control" formControlName="password" placeholder="Password" required />
+    <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password" required />
+
+    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <button type="submit" [disabled]="registerForm.invalid" class="btn btn-dark">Register</button>
+  </form>
+</div>

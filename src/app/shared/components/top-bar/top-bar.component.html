@@ -1,0 +1,16 @@
+<div class="grid">
+  <div class="grid-item">
+    <nav class="top-bar">
+      <div class="buttons">
+        <a [routerLink]="['/register']">
+          Register
+        </a>
+        <a *ngIf="!isUserLoggedIn()"
+          [routerLink]="['/login']">Login</a>
+        <a *ngIf="isUserLoggedIn()"
+          [routerLink]="['/login']" (click)="logout()">Logout
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>

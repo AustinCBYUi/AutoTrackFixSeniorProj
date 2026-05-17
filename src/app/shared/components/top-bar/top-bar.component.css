@@ -1,0 +1,40 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: var(--theme);
+}
+
+.grid-item {
+  display: flex;
+  grid-column: 4/5;
+}
+
+.top-bar {
+  background-color: var(--theme);
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+}
+
+.top-bar .buttons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.top-bar a {
+  margin-right: 20px;
+  padding: 5px;
+}
+
+.top-bar a:hover {
+  background-color: #515151;
+}
+
+.top-bar a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
