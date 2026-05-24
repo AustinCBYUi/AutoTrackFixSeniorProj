@@ -17,5 +17,5 @@ import {TopBarComponent} from './shared/components/top-bar/top-bar.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Orkin Inspector CMS';
+  title = 'AutoTrack CMS';
 }

@@ -1,0 +1,32 @@
+<div class="card p-3">
+  <div class="organa">
+    <h2>Client Details</h2>
+    <p><strong>First Name: </strong>{{ client.firstName }}</p>
+    <p><strong>Last Name: </strong>{{ client.lastName }}</p>
+    <p><strong>Email Address: </strong>{{ client.email }}</p>
+    <p><strong>Business: </strong>{{ client.business }}</p>
+    <p><strong>Phone Number: </strong>{{ client.phoneNumber }}</p>
+    <p><strong>Date Created: </strong>{{ client.createdDate | date: 'dd MMM yyyy' }}</p>
+    <p><strong>Last Serviced Date: </strong>{{ client.lastServiced | date: 'dd MMM yyyy' }}</p>
+    <p><strong>Next Service Date: </strong>{{ client.nextServiceDate | date: 'dd MMM yyyy' }}</p>
+    <p><strong>Status: </strong>{{ client.status }}</p>
+    <br>
+    <h4>Address</h4>
+    <p><strong>Street: </strong>{{ client.address.street }}</p>
+    <p><strong>City: </strong>{{ client.address.city }}</p>
+    <p><strong>State: </strong>{{ client.address.state }}</p>
+    <p><strong>Zip Code: </strong>{{ client.address.zip }}</p>
+    <br>
+    <h4>Account Notes:</h4>
+    <ul *ngIf="client.accountNotes.length > 0">
+      <li *ngFor="let note of client.accountNotes">
+        <p><strong>{{ note.date | date: 'dd MMM yyyy'}}</strong> {{ note.text }}</p>
+      </li>
+    </ul>
+    <p *ngIf="client.accountNotes.length === 0">No account notes available.</p>
+  </div>
+</div>
+<div class="button-group">
+  <button type="button" class="btn btn-warning" routerLink="/clients/edit-client/{{client.id}}">Edit</button>
+  <button type="button" class="btn btn-outline-info" routerLink="/clients">Back</button>
+</div>

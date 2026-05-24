@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../../services/client.service';
 import { Client } from '../../../../../backend/models/client.model';
 import { NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -24,20 +25,34 @@ export class ClientComponent implements OnInit {
   clientsPerPage: number = 10;
 
   constructor(
+    private clientService: ClientService,
     private router: Router,
-    ) { }
+  ) { }
 
 
   ngOnInit() {
+    this.loadClients();
+  }
+
+  loadClients() {
+    this.clientService.getClients().subscribe(
+      (data) => {
+        this.clients = data;
+        this.applyFilter();
+      },
+      (error) => {
+        console.error("Error fetching clients:", error);
+      }
+    );
   }
 
 
   applyFilter(): void {
     this.filteredClients = this.clients.filter(client =>
-    client.firstName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-    client.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-    client.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-    client.phoneNumber?.toLowerCase().includes(this.searchTerm.toLowerCase())
+      client.firstName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      client.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      client.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      client.phoneNumber?.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
 
     this.changePage(1);
@@ -75,6 +90,20 @@ export class ClientComponent implements OnInit {
       this.router.navigate(['clients/edit-client', client.id]);
     } else {
       this.router.navigate(['login']);
+    }
+  }
+
+  //Delete a client
+  deleteClient(id: string) {
+    if (confirm("Are you sure you want to delete this client?")) {
+      this.clientService.deleteClient(id).subscribe(
+        () => {
+          this.loadClients();
+        },
+        (error) => {
+          console.error("Error deleting client:", error);
+        }
+      )
     }
   }
 }

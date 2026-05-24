@@ -6,11 +6,11 @@
   <!-- Search -->
   <div class="input-group mb-3 mt-3">
     <input
-    type="text"
-    class="form-control"
-    placeholder="Search by name, email, or phone"
-    [(ngModel)]="searchTerm"
-    (ngModelChange)="onSearchChange()" />
+      type="text"
+      class="form-control"
+      placeholder="Search by name, email, or phone"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange()" />
   </div>
 
   <!-- Table -->
@@ -30,6 +30,17 @@
       <td>{{ client.lastName }}</td>
       <td>{{ client.email }}</td>
       <td>{{ client.phoneNumber }}</td>
+      <td>
+        <button class="btn btn-primary btn-sm me-2" [routerLink]="[client.id]">
+          View
+        </button>
+        <button class="btn btn-warning btn-sm me-2" (click)="editClient(client)">
+          Edit
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="deleteClient(client.id)">
+          Delete
+        </button>
+      </td>
     </tr>
     </tbody>
   </table>

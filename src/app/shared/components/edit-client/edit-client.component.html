@@ -1,0 +1,72 @@
+<h2>Edit Client: {{ client.lastName }}, {{ client.firstName }}</h2>
+
+<form [formGroup]="editClientForm" (ngSubmit)="onSubmit()">
+  <div class="fun">
+    <label for="firstName" class="visually-hidden">First Name:</label>
+    <input id="firstName" name="firstName" formControlName="firstName" class="form-control">
+  </div>
+
+  <div class="fun">
+    <label for="lastName" class="visually-hidden">Last Name:</label>
+    <input id="lastName" name="lastName" formControlName="lastName" class="form-control">
+  </div>
+
+  <div class="fun">
+    <label for="email" class="visually-hidden">Email:</label>
+    <input type="email" id="email" name="email" formControlName="email" class="form-control">
+  </div>
+
+  <div class="fun">
+    <label for="business" class="visually-hidden">Business:</label>
+    <input id="business" name="business" formControlName="business" class="form-control" placeholder="Business">
+  </div>
+
+  <div class="fun">
+    <label for="phoneNumber" class="visually-hidden">Phone Number:</label>
+    <input id="phoneNumber" name="phoneNumber" formControlName="phoneNumber" class="form-control" placeholder="Phone Number">
+  </div>
+
+  <div class="fun">
+    <label for="createdDate">Created Date:</label>
+    <input type="date" id="createdDate" name="createdDate" formControlName="createdDate" class="form-control">
+  </div>
+
+  <div class="fun">
+    <label for="lastServiced">Last Serviced Date:</label>
+    <input type="date" id="lastServiced" name="lastServiced" formControlName="lastServiced" class="form-control">
+  </div>
+
+  <div class="fun">
+    <label for="nextServiceDate">Next Service Date:</label>
+    <input type="date" id="nextServiceDate" name="nextServiceDate" formControlName="nextServiceDate" class="form-control">
+  </div>
+
+  <div class="fun">
+    <label for="status">Status:</label>
+    <select id="status" formControlName="status" class="form-control">
+      <option value="New">New</option>
+      <option value="Pipeline">Pipeline</option>
+      <option value="Contacted">Contacted</option>
+      <option value="Quote Sent">Quote Sent</option>
+      <option value="Closed">Closed</option>
+    </select>
+  </div>
+
+  <div class="fun">
+    <label>Account Notes:</label>
+    <div formArrayName="accountNotes">
+      <div *ngFor="let note of accountNotes.controls; let i = index" [formGroupName]="i">
+        <div class="fun">
+          <textarea formControlName="text" class="form-control" placeholder="Note Text"></textarea>
+          <button type="button" class="btn btn-outline-danger" (click)="removeAccountNote(i)">Remove</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-dark" (click)="addAccountNote({text: '', date: ''})">Add Note</button>
+  </div>
+
+  <div class="fun">
+    <button type="submit" class="btn btn-primary">Save Client</button>
+    <button type="button" class="btn btn-outline-info" routerLink="/clients">Cancel</button>
+  </div>
+</form>
