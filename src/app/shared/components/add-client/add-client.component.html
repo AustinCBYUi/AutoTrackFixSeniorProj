@@ -1,0 +1,81 @@
+<h2>Add New Client</h2>
+
+<form (ngSubmit)="addClient()" #addClientForm="ngForm">
+  <div class="fun">
+    <label for="firstName" class="visually-hidden">First Name:</label>
+    <input id="firstName" name="firstName" [(ngModel)]="newClient.firstName" class="form-control" placeholder="First Name">
+  </div>
+
+  <div class="fun">
+    <label for="lastName" class="visually-hidden">Last Name:</label>
+    <input id="lastName" name="lastName" [(ngModel)]="newClient.lastName" class="form-control" placeholder="Last Name">
+  </div>
+
+  <div class="fun">
+    <label for="email" class="visually-hidden">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="newClient.email" class="form-control" placeholder="Email">
+  </div>
+
+  <div class="fun">
+    <label for="business" class="visually-hidden">Business:</label>
+    <input id="business" name="business" [(ngModel)]="newClient.business" class="form-control" placeholder="Business">
+  </div>
+
+  <div class="fun">
+    <label for="phoneNumber" class="visually-hidden">Phone Number:</label>
+    <input id="phoneNumber" name="phoneNumber" [(ngModel)]="newClient.phoneNumber" class="form-control" placeholder="Phone Number">
+  </div>
+
+  <h3>Business Information</h3>
+  <div class="fun">
+    <label for="street" class="visually-hidden">Street</label>
+    <input id="street" name="street" [(ngModel)]="newClient.address.street" class="form-control" placeholder="Street">
+  </div>
+
+  <div class="fun">
+    <label for="city" class="visually-hidden">City:</label>
+    <input id="city" name="city" [(ngModel)]="newClient.address.city" class="form-control" placeholder="City">
+  </div>
+
+    <div class="fun">
+      <label for="state" class="visually-hidden">State:</label>
+      <input id="state" name="state" [(ngModel)]="newClient.address.state" class="form-control" placeholder="State">
+    </div>
+
+    <div class="fun">
+      <label for="zip" class="visually-hidden">Zip Code:</label>
+      <input id="zip" name="zip" [(ngModel)]="newClient.address.zip" class="form-control" placeholder="Zip Code">
+    </div>
+
+  <div class="fun visually-hidden">
+    <label for="createdDate">Created Date:</label>
+    <input type="date" id="createdDate" name="createdDate" [(ngModel)]="newClient.createdDate" class="form-control" placeholder="Created Date">
+  </div>
+
+  <div class="fun">
+    <label for="lastServiced">Last Serviced Date:</label>
+    <input type="date" id="lastServiced" name="lastServiced" [(ngModel)]="newClient.lastServiced" class="form-control" placeholder="Last Serviced Date">
+  </div>
+
+  <div class="fun">
+    <label for="nextServiceDate">Next Service Date:</label>
+    <input type="date" id="nextServiceDate" name="nextServiceDate" [(ngModel)]="newClient.nextServiceDate" class="form-control" placeholder="Next Service Date">
+  </div>
+
+  <h3>Account Notes</h3>
+  <div class="fun">
+    <textarea id="accountNotes" name="accountNotes" [(ngModel)]="noteText" class="form-control" placeholder="Add a note"></textarea>
+    <button type="button" class="btn btn-outline-primary" (click)="addNote(noteText)">Add Note</button>
+  </div>
+
+  <ul *ngIf="newClient.accountNotes.length > 0" class="list-group">
+    <li *ngFor="let note of newClient.accountNotes" class="list-group-item">
+      <p><strong>{{ note.date }}</strong>: {{ note.text }}</p>
+    </li>
+  </ul>
+
+  <div class="button-group">
+    <button type="submit" class="btn btn-primary">Add Client</button>
+    <button type="button" class="btn btn-outline-info" routerLink="/clients">Cancel</button>
+  </div>
+</form>
