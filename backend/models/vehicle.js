@@ -1,5 +1,11 @@
 const mongoose = require("mongoose");
 
+const VehicleNoteSchema = new mongoose.Schema({
+  text: { type: String, required: true },
+  date: { type: String },
+  addedBy: { type: String },
+});
+
 const VehicleSchema = new mongoose.Schema({
   clientId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -20,13 +26,7 @@ const VehicleSchema = new mongoose.Schema({
   lastServiced: { type: String },
   nextServiceDate: { type: String },
 
-  vehicleNotes: [
-    {
-      text: String,
-      date: { type: String },
-      addedBy: String,
-    },
-  ],
+  vehicleNotes: [VehicleNoteSchema],
 });
 
 VehicleSchema.virtual("id").get(function () {

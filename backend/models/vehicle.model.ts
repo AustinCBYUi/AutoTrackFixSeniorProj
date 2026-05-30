@@ -5,7 +5,7 @@ export interface VehicleNote {
 }
 
 export interface Vehicle {
-  id: string;
+  id?: string;
   clientId: string;
 
   licensePlate?: string;

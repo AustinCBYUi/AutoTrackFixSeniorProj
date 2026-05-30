@@ -1,5 +1,7 @@
 const express = require('express');
 const Client = require('../models/client');
+const Vehicle = require('../models/vehicle');
+const Service = require('../models/service');
 const router = express.Router();
 const mongoose = require('mongoose');
 const clientUtils = require('../utils/clientUtils');
@@ -91,5 +93,17 @@ router.put('/edit-client/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to update client.' });
   }
 })
+
+// Get a vehicle for a client
+router.get("/client/:clientId", async (req, res) => {
+  const vehicles = await Vehicle.find({ clientId: req.params.clientId });
+  res.json(vehicles);
+})
+
+// Services for one vehicle
+router.get("/vehicle/:vehicleId", async (req, res) => {
+  const services = await Service.find({ vehicleId: req.params.vehicleId });
+  res.json(services);
+});
 
 module.exports = router;
