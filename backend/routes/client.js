@@ -20,6 +20,18 @@ router.get('/', async (req, res) => {
 });
 
 
+//Counter for clients
+router.get('/dash/count', async (req, res) => {
+  try {
+    const count = await Client.countDocuments();
+    res.json(count);
+  } catch (error) {
+    console.error('Error fetching client count:', error);
+    res.status(500).json({ error: 'Failed to fetch count.' });
+  }
+})
+
+
 //Get by ID (View)
 router.get('/:id', async (req, res) => {
   try {
@@ -42,17 +54,6 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-
-//Counter for clients
-router.get('/dash/count', async (req, res) => {
-  try {
-    const count = await Client.countDocuments();
-    res.json(count);
-  } catch (error) {
-    console.error('Error fetching client count:', error);
-    res.status(500).json({ error: 'Failed to fetch count.' });
-  }
-})
 
 
 // POST: Create a new client \\

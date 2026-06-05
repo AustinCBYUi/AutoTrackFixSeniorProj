@@ -24,6 +24,15 @@ const ClientSchema = new mongoose.Schema({
     text: String,
     date: { type: String }
   }],
+  vehicles: [{
+    year: String,
+    make: String,
+    model: String,
+    vin: String,
+    licensePlate: String,
+    mileage: String,
+    notes: String
+  }],
   services: [{ type: String }],
 });
 

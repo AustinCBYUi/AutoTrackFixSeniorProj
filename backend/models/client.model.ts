@@ -4,6 +4,16 @@ export interface AccountNote {
   addedBy?: string;
 }
 
+export interface Vehicles {
+  year: string;
+  make: string;
+  model: string;
+  vin?: string;
+  licensePlate?: string;
+  mileage: string;
+  notes: string;
+}
+
 export interface Client {
   id: string;
   firstName: string;
@@ -21,5 +31,6 @@ export interface Client {
   lastServiced?: string;
   nextServiceDate?: string;
   accountNotes?: AccountNote[];
+  vehicles: Vehicles[];
   services?: string[];
 }

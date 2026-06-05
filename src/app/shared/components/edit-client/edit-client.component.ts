@@ -48,6 +48,7 @@ export class EditClientComponent implements OnInit {
       nextServiceDate: [''],
       status: ['New'],
       accountNotes: this.fb.array([]),
+      vehicles: this.fb.array([]),
 
     });
 
@@ -58,6 +59,7 @@ export class EditClientComponent implements OnInit {
           this.client = client;
 
           client.accountNotes?.forEach((note: AccountNote) => this.addAccountNote({ text: note.text, date: note.date ?? '' }));
+          client.vehicles?.forEach((vehicle: any) => this.addVehicle(vehicle));
         }
       });
     }
@@ -77,6 +79,34 @@ export class EditClientComponent implements OnInit {
 
   removeAccountNote(index: number): void {
     this.accountNotes.removeAt(index);
+  }
+
+  get vehicles() {
+    return this.editClientForm.get('vehicles') as FormArray;
+  }
+
+  addVehicle(vehicle: any = {
+    year: '',
+    make: '',
+    model: '',
+    vin: '',
+    licensePlate: '',
+    mileage: '',
+    notes: ''
+  }) {
+    this.vehicles.push(this.fb.group({
+      year: [vehicle.year],
+      make: [vehicle.make],
+      model: [vehicle.model],
+      vin: [vehicle.vin],
+      licensePlate: [vehicle.licensePlate],
+      mileage: [vehicle.mileage],
+      notes: [vehicle.notes],
+    }));
+  }
+
+  removeVehicle(index: number): void {
+    this.vehicles.removeAt(index);
   }
 
   onSubmit(): void {
