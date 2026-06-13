@@ -26,19 +26,65 @@
     <p *ngIf="client.accountNotes && client.accountNotes.length">No account notes available.</p>
     <br>
     <h4>Vehicles:</h4>
-    <div *ngIf="client.vehicles && client.vehicles.length > 0">
-      <div *ngFor="let vehicle of client.vehicles" class="card p-2 mb-2">
-        <p><strong>Year: </strong>{{ vehicle.year }}</p>
-        <p><strong>Make: </strong>{{ vehicle.make }}</p>
-        <p><strong>Model: </strong>{{ vehicle.model }}</p>
+    <button
+      type="button"
+      class="btn btn-success mb-3"
+      routerLink="/vehicles/add-vehicle/{{ client.id }}">
+      Add Vehicle
+    </button>
+    <div *ngIf="vehicles.length > 0">
+      <div *ngFor="let vehicle of vehicles" class="card p-3 mb-3">
+
+        <h5>{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}</h5>
+
         <p><strong>VIN: </strong>{{ vehicle.vin }}</p>
         <p><strong>License Plate: </strong>{{ vehicle.licensePlate }}</p>
-        <p><strong>Mileage: </strong>{{ vehicle.mileage }}</p>
-        <p><strong>Notes: </strong>{{ vehicle.notes }}</p>
+        <p><strong>Color: </strong>{{ vehicle.color }}</p>
+        <p><strong>Engine Size: </strong>{{ vehicle.engineSize }}</p>
+        <p><strong>Trim: </strong>{{ vehicle.trim }}</p>
+        <p><strong>Created Date: </strong>{{ vehicle.createdDate | date: 'dd MMM yyyy' }}</p>
+        <p><strong>Last Serviced: </strong>{{ vehicle.lastServiced | date: 'dd MMM yyyy' }}</p>
+        <p><strong>Next Service Date: </strong>{{ vehicle.nextServiceDate | date: 'dd MMM yyyy' }}</p>
+
+        <div *ngIf="vehicle.vehicleNotes && vehicle.vehicleNotes.length > 0">
+          <h6>Vehicle Notes:</h6>
+          <ul>
+            <li *ngFor="let note of vehicle.vehicleNotes">
+              <strong>{{ note.date | date: 'dd MMM yyyy' }}</strong> {{ note.text }}
+            </li>
+          </ul>
+        </div>
+
+        <p *ngIf="!vehicle.vehicleNotes || vehicle.vehicleNotes.length === 0">
+          No vehicle notes available.
+        </p>
+
+        <div class="button-group">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            (click)="viewVehicle(vehicle.id)">
+            View
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-warning"
+            (click)="editVehicle(vehicle.id)">
+            Edit
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="deleteVehicle(vehicle.id)">
+            Delete
+          </button>
+        </div>
       </div>
     </div>
 
-    <p *ngIf="!client.vehicles || client.vehicles.length === 0">No vehicles available.</p>
+    <p *ngIf="vehicles.length === 0">No vehicles available.</p>
   </div>
 </div>
 <div class="button-group">

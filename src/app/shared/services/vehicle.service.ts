@@ -27,21 +27,11 @@ export class VehicleService {
   }
 
   addVehicle(vehicle: Vehicle): Observable<Vehicle> {
-    return this.http.post<Vehicle>(
-      this.baseUrl,
-      vehicle
-    );
+    return this.http.post<Vehicle>(this.baseUrl, vehicle);
   }
 
-  updateVehicle(
-    id: string,
-    vehicle: Vehicle
-  ): Observable<Vehicle> {
-
-    return this.http.put<Vehicle>(
-      `${this.baseUrl}/edit-vehicle/${id}`,
-      vehicle
-    );
+  updateVehicle(id: string, vehicle: Vehicle): Observable<Vehicle> {
+    return this.http.put<Vehicle>(`${this.baseUrl}/edit-vehicle/${id}`, vehicle);
   }
 
   deleteVehicle(id: string): Observable<any> {
