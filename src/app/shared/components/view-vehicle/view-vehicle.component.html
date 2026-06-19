@@ -1,1 +1,44 @@
-<p>view-vehicle works!</p>
+<div class="card p-3" *ngIf="vehicle">
+  <div class="organa">
+    <h2>Vehicle Details</h2>
+
+    <p><strong>Year: </strong>{{ vehicle.year }}</p>
+    <p><strong>Make: </strong>{{ vehicle.make }}</p>
+    <p><strong>Model: </strong>{{ vehicle.model }}</p>
+    <p><strong>VIN: </strong>{{ vehicle.vin }}</p>
+    <p><strong>License Plate: </strong>{{ vehicle.licensePlate }}</p>
+    <p><strong>Engine Size: </strong>{{ vehicle.engineSize }}</p>
+    <p><strong>Trim: </strong>{{ vehicle.trim }}</p>
+    <p><strong>Color: </strong>{{ vehicle.color }}</p>
+
+    <br>
+
+    <h4>Service Dates</h4>
+    <p><strong>Created Date: </strong>{{ vehicle.createdDate | date: 'dd MMM yyyy' }}</p>
+    <p><strong>Last Serviced: </strong>{{ vehicle.lastServiced | date: 'dd MMM yyyy' }}</p>
+    <p><strong>Next Service Date: </strong>{{ vehicle.nextServiceDate | date: 'dd MMM yyyy' }}</p>
+
+    <br>
+
+    <h4>Vehicle Notes</h4>
+    <ul *ngIf="vehicle.vehicleNotes && vehicle.vehicleNotes.length > 0">
+      <li *ngFor="let note of vehicle.vehicleNotes">
+        <p><strong>{{ note.date | date: 'dd MMM yyyy' }}</strong> {{ note.text }}</p>
+      </li>
+    </ul>
+
+    <p *ngIf="!vehicle.vehicleNotes || vehicle.vehicleNotes.length === 0">
+      No vehicle notes available.
+    </p>
+  </div>
+</div>
+
+<div class="button-group" *ngIf="vehicle">
+  <button type="button" class="btn btn-warning" routerLink="/vehicles/edit-vehicle/{{ vehicle.id }}">
+    Edit
+  </button>
+
+  <button type="button" class="btn btn-outline-info" (click)="goBackToClient()">
+    Back to Client
+  </button>
+</div>

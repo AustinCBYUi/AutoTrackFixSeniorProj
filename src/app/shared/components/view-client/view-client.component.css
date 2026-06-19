@@ -5,3 +5,8 @@
 .button-group {
   margin: 10px 15%;
 }
+
+.vehicle-card {
+  color: white;
+  background-color: #59536e;
+}

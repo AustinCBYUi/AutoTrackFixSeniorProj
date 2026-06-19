@@ -35,8 +35,7 @@ export class VehicleService {
   }
 
   deleteVehicle(id: string): Observable<any> {
-    return this.http.delete(
-      `${this.baseUrl}/${id}`
+    return this.http.delete(`${this.baseUrl}/${id}`
     );
   }
 
