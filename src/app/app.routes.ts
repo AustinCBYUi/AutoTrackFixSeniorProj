@@ -7,6 +7,7 @@ import { EditClientComponent } from './shared/components/edit-client/edit-client
 import { AddVehicleComponent } from './shared/components/add-vehicle/add-vehicle.component';
 import { ViewVehicleComponent } from './shared/components/view-vehicle/view-vehicle.component';
 import { EditVehicleComponent } from './shared/components/edit-vehicle/edit-vehicle.component';
+import { AddServiceComponent } from './shared/components/add-service/add-service.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import {RegisterComponent} from './shared/components/register/register.component';
 
@@ -23,5 +24,6 @@ export const routes: Routes = [
   { path: 'vehicles/add-vehicle/:clientId', component: AddVehicleComponent, canActivate: [authGuard] },
   { path: 'vehicles/view-vehicle/:id', component: ViewVehicleComponent, canActivate: [authGuard] },
   { path: 'vehicles/edit-vehicle/:id', component: EditVehicleComponent, canActivate: [authGuard] },
+  { path: 'services/add-service/:clientId/:vehicleId', component: AddServiceComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '/login' },
 ];

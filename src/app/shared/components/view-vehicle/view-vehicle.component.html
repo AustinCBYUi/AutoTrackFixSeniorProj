@@ -30,10 +30,60 @@
     <p *ngIf="!vehicle.vehicleNotes || vehicle.vehicleNotes.length === 0">
       No vehicle notes available.
     </p>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h4>Service History</h4>
+
+      <button
+        type="button"
+        class="btn btn-success btn-sm"
+        [routerLink]="['/services/add-service', vehicle.clientId, vehicle.id]">
+        Add Service
+      </button>
+    </div>
+
+    <div *ngIf="services.length > 0" class="list-group mt-2">
+      <div
+        *ngFor="let service of services"
+        class="list-group-item d-flex justify-content-between align-items-center">
+
+        <div>
+          <strong>{{ service.serviceTitle }}</strong>
+          <br>
+          <small>
+            Date: {{ service.serviceDate | date: 'dd MMM yyyy' }} |
+            Mileage: {{ service.mileage || 'N/A' }} |
+            Status: {{ service.status || 'Scheduled' }}
+          </small>
+          <br>
+          <small *ngIf="service.cost">
+            Cost: ${{ service.cost }}
+          </small>
+        </div>
+
+        <div class="button-group">
+          <button type="button" class="btn btn-outline-primary btn-sm">
+            View
+          </button>
+
+          <button type="button" class="btn btn-outline-warning btn-sm">
+            Edit
+          </button>
+
+          <button type="button" class="btn btn-outline-danger btn-sm">
+            Delete
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <p *ngIf="services.length === 0">No services available.</p>
   </div>
 </div>
 
 <div class="button-group" *ngIf="vehicle">
+
   <button type="button" class="btn btn-warning" routerLink="/vehicles/edit-vehicle/{{ vehicle.id }}">
     Edit
   </button>

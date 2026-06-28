@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const clientRoutes = require('./routes/client');
 const vehicleRoutes = require("./routes/vehicle");
+const serviceRoutes = require("./routes/service");
 const { router: authRoutes } = require('./routes/auth');
 require('dotenv').config();
 
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 });
 app.use('/clients', clientRoutes);
 app.use('/vehicles', vehicleRoutes);
+app.use('/services', serviceRoutes);
 app.use('/api/auth', authRoutes);
 
 
