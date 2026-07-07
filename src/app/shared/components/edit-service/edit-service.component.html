@@ -1,0 +1,88 @@
+<h2>Edit Service</h2>
+
+<form (ngSubmit)="onSubmit()" #editServiceForm="ngForm">
+  <div class="fun">
+    <label for="serviceTitle" class="visually-hidden">Service Title:</label>
+    <input
+      id="serviceTitle"
+      name="serviceTitle"
+      [(ngModel)]="service.serviceTitle"
+      class="form-control"
+      placeholder="Service Title"
+      required>
+  </div>
+
+  <div class="fun">
+    <label for="serviceDate">Service Date:</label>
+    <input
+      type="date"
+      id="serviceDate"
+      name="serviceDate"
+      [(ngModel)]="service.serviceDate"
+      class="form-control"
+      required>
+  </div>
+
+  <div class="fun">
+    <label for="mileage" class="visually-hidden">Mileage:</label>
+    <input
+      type="number"
+      id="mileage"
+      name="mileage"
+      [(ngModel)]="service.mileage"
+      class="form-control"
+      placeholder="Mileage">
+  </div>
+
+  <div class="fun">
+    <label for="cost" class="visually-hidden">Cost:</label>
+    <input
+      type="number"
+      id="cost"
+      name="cost"
+      [(ngModel)]="service.cost"
+      class="form-control"
+      placeholder="Cost">
+  </div>
+
+  <div class="fun">
+    <label for="description" class="visually-hidden">Description:</label>
+    <textarea
+      id="description"
+      name="description"
+      [(ngModel)]="service.description"
+      class="form-control"
+      placeholder="Service Description">
+    </textarea>
+  </div>
+
+  <div class="fun">
+    <label for="nextServiceDate">Next Service Date:</label>
+    <input
+      type="date"
+      id="nextServiceDate"
+      name="nextServiceDate"
+      [(ngModel)]="service.nextServiceDate"
+      class="form-control">
+  </div>
+
+  <div class="fun">
+    <label for="status">Status:</label>
+    <select
+      id="status"
+      name="status"
+      [(ngModel)]="service.status"
+      class="form-control">
+
+      <option value="Scheduled">Scheduled</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+      <option value="Cancelled">Cancelled</option>
+    </select>
+  </div>
+
+  <div class="button-group">
+    <button type="submit" class="btn btn-primary">Save Service</button>
+    <button type="button" class="btn btn-outline-info" (click)="cancel()">Cancel</button>
+  </div>
+</form>

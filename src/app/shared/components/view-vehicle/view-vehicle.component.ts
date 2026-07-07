@@ -55,6 +55,41 @@ export class ViewVehicleComponent implements OnInit {
     }
   }
 
+  viewService(id: string | undefined): void {
+    if (!id) {
+      return;
+    }
+
+    this.router.navigate(['/services/view-service', id]);
+  }
+
+  editService(id: string | undefined): void {
+    if (!id) {
+      return;
+    }
+
+    this.router.navigate(['/services/edit-service', id]);
+  }
+
+  deleteService(id: string | undefined): void {
+    if (!id) {
+      return;
+    }
+
+    if (!confirm('Delete this service?')) {
+      return;
+    }
+
+    this.serviceService.deleteService(id).subscribe({
+      next: () => {
+        this.services = this.services.filter(service => service.id !== id);
+      },
+      error: (error) => {
+        console.error('Error deleting service:', error);
+      }
+    });
+  }
+
   goBackToClient(): void {
     if (this.vehicle?.clientId) {
       this.router.navigate(['/clients', this.vehicle.clientId]);
