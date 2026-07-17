@@ -31,6 +31,8 @@
       No vehicle notes available.
     </p>
 
+    <!-- Services section -->
+
     <div class="d-flex justify-content-between align-items-center">
       <h4>Service History</h4>
 
@@ -42,9 +44,21 @@
       </button>
     </div>
 
-    <div *ngIf="services.length > 0" class="list-group mt-2">
+    <div class="fun mt-3">
+      <label for="serviceSearch" class="visually-hidden">Search Services:</label>
+
+      <input
+        type="search"
+        id="serviceSearch"
+        [(ngModel)]="serviceSearch"
+        class="form-control"
+        placeholder="Search Services"
+      >
+    </div>
+
+    <div *ngIf="filteredServices.length > 0" class="list-group mt-2">
       <div
-        *ngFor="let service of services"
+        *ngFor="let service of paginatedServices"
         class="list-group-item d-flex justify-content-between align-items-center service-item">
 
         <div>
@@ -76,6 +90,32 @@
         </div>
 
       </div>
+    </div>
+
+    <!-- Pagination -->
+    <div
+      *ngIf="totalServicePages > 1"
+      class="d-flex justify-content-between align-items-center mt-3">
+
+      <button
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
+        (click)="previousServicePage()"
+        [disabled]="currentServicePage === 1">
+        Previous
+      </button>
+
+      <span>
+        Page {{ currentServicePage }} of {{ totalServicePages }}
+      </span>
+
+      <button
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
+        (click)="nextServicePage()"
+        [disabled]="currentServicePage === totalServicePages">
+        Next
+      </button>
     </div>
 
     <p *ngIf="services.length === 0">No services available.</p>

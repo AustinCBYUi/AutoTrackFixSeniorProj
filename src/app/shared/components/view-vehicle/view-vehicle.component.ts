@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DatePipe, NgForOf, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { VehicleService } from '../../services/vehicle.service';
 import { Vehicle } from '../../../../../backend/models/vehicle.model';
@@ -14,7 +15,8 @@ import { Service } from '../../../../../backend/models/service.model';
     RouterLink,
     DatePipe,
     NgIf,
-    NgForOf
+    NgForOf,
+    FormsModule,
   ],
   templateUrl: './view-vehicle.component.html',
   styleUrl: './view-vehicle.component.css'
@@ -22,6 +24,10 @@ import { Service } from '../../../../../backend/models/service.model';
 export class ViewVehicleComponent implements OnInit {
   vehicle: Vehicle | null = null;
   services: Service[] = [];
+  serviceSearch = ''
+  // for pages
+  currentServicePage = 1;
+  servicesPerPage = 5;
 
   constructor(
     private route: ActivatedRoute,
@@ -53,6 +59,46 @@ export class ViewVehicleComponent implements OnInit {
         }
       });
     }
+  }
+
+  get paginatedServices(): Service[] {
+    const startIndex = (this.currentServicePage - 1) * this.servicesPerPage;
+    const endIndex = startIndex + this.servicesPerPage;
+
+    return this.filteredServices.slice(startIndex, endIndex);
+  }
+
+  get totalServicePages(): number {
+    return Math.ceil(this.filteredServices.length / this.servicesPerPage);
+  }
+
+  previousServicePage(): void {
+    if (this.currentServicePage > 1) {
+      this.currentServicePage--;
+    }
+  }
+
+  nextServicePage(): void {
+    if (this.currentServicePage < this.totalServicePages) {
+      this.currentServicePage++;
+    }
+  }
+
+  get filteredServices(): Service[] {
+    const search = this.serviceSearch.trim().toLowerCase();
+
+    if (!search) {
+      return this.services;
+    }
+
+    return this.services.filter(service => {
+      return (
+        service.serviceTitle?.toLowerCase().includes(search) ||
+        service.description?.toLowerCase().includes(search) ||
+        service.status?.toLowerCase().includes(search) ||
+        service.serviceDate?.toLowerCase().includes(search)
+      );
+    });
   }
 
   viewService(id: string | undefined): void {

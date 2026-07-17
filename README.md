@@ -2,7 +2,11 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 #### Written and Developed by Austin Campbell Copyright 2026
-test
+
+Instructor login to test features if needed
+username: teacher@byui.edu
+password: teach1
+
 ## Application Plan
 #### Purpose
  * This Full-Stack Web Application is a senior project, it is a client management system to track clients and their vehicles for a automotive business.
