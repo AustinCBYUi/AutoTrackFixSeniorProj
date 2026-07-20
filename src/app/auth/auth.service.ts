@@ -8,8 +8,8 @@ import {BehaviorSubject, Observable} from 'rxjs';
 })
 export class AuthService {
   //TODO Add a developer / production switch here.. vv
-  // private apiUrl = 'https://salesinspectorcms-1-q08b.onrender.com/api/auth';
-  private apiUrl = 'http://localhost:3000/api/auth';
+  // private apiUrl = 'http://localhost:3000/api/auth';
+  private apiUrl = 'https://autotrackfixseniorproj.onrender.com/api/auth';
   private authStatus = new BehaviorSubject<boolean>(this.hasToken());
   private token: string | null = null;
 

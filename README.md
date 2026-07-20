@@ -22,6 +22,12 @@ password: teach1
 > * Node.JS
 > * MongoDB?
  
+### Hosting
+Backend needs to be hosted on Render, remove NPM run build command from the build.
+Entire application needs to then be hosted on Netlify. Make sure to remove localhost
+private development strings from the services and put the Render connection strings
+in instead.
+
 #### Architecture
 >*Frontend*<br>
 > The frontend will be designed and developed in the Angular Framework
@@ -53,7 +59,8 @@ Running the front end: *ng serve*
 Running the back end: "cd backend", then node server.js.
 // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
 
-In the services, all service URLs must reflect the production URL instead of a development localhost:
+In the services, all service URLs must reflect the production URL instead of a development localhost, this includes
+the auth service in the auth folder:
 `export class ServiceService {
   private baseUrl =
     'https://autotrackfixseniorproj.onrender.com/services';`
