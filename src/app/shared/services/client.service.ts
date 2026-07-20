@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ClientService {
   // private baseUrl = 'this is for production urls like https://salesinspectorcms-1-q08b.onrender.com/clients'
-  private baseUrl = 'http://localhost:3000/clients'; //Replace with proper API endpoint
+  //private baseUrl = 'http://localhost:3000/clients'; //Replace with proper API endpoint
+  private baseUrl = 'https://autotrackfixseniorproj.onrender.com/clients';
 
   constructor(private http: HttpClient) { }
 

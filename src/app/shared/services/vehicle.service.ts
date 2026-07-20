@@ -8,7 +8,7 @@ import { Vehicle } from '../../../../backend/models/vehicle.model';
   providedIn: 'root'
 })
 export class VehicleService {
-  private baseUrl = 'http://localhost:3000/vehicles';
+  private baseUrl = 'https://autotrackfixseniorproj.onrender.com/vehicles';
 
   constructor(private http: HttpClient) {}
 

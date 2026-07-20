@@ -53,6 +53,17 @@ Running the front end: *ng serve*
 Running the back end: "cd backend", then node server.js.
 // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
 
+In the services, all service URLs must reflect the production URL instead of a development localhost:
+`export class ServiceService {
+  private baseUrl =
+    'https://autotrackfixseniorproj.onrender.com/services';`
+
+needs to be 
+
+`export class ClientService {
+  // private baseUrl = 'this is for production urls like https://salesinspectorcms-1-q08b.onrender.com/clients'
+  //private baseUrl = 'http://localhost:3000/clients'; //Replace with proper API endpoint`
+
 ## Model / Schema Modification
 Database Models must be changed in the backend (models), and anywhere they are referenced.
 

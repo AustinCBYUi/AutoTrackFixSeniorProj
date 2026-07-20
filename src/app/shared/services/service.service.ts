@@ -9,7 +9,7 @@ import { Service } from '../../../../backend/models/service.model';
 })
 export class ServiceService {
   private baseUrl =
-    'http://localhost:3000/services';
+    'https://autotrackfixseniorproj.onrender.com/services';
 
   constructor(
     private http: HttpClient
